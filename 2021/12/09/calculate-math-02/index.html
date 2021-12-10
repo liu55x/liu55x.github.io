@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"liu55x.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="Abstract矩阵与数值分析第二章的笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="矩阵与数值分析笔记 Part02">
+<meta property="og:url" content="http://liu55x.github.io/2021/12/09/calculate-math-02/index.html">
+<meta property="og:site_name" content="Ling&#39;s Blog">
+<meta property="og:description" content="Abstract矩阵与数值分析第二章的笔记">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-12-09T10:33:07.000Z">
+<meta property="article:modified_time" content="2021-12-09T13:24:48.041Z">
+<meta property="article:author" content="Ling">
+<meta property="article:tag" content="math">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://liu55x.github.io/2021/12/09/calculate-math-02/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://liu55x.github.io/2021/12/09/calculate-math-02/","path":"2021/12/09/calculate-math-02/","title":"矩阵与数值分析笔记 Part02"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>矩阵与数值分析笔记 Part02 | Ling's Blog</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Ling's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Abstract"><span class="nav-number">1.</span> <span class="nav-text">Abstract</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-%E7%9F%A9%E9%98%B5%E7%9A%84%E4%B8%89%E8%A7%92%E5%88%86%E8%A7%A3"><span class="nav-number">2.</span> <span class="nav-text">2.1 矩阵的三角分解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-1-LU%E5%88%86%E8%A7%A3"><span class="nav-number">2.1.</span> <span class="nav-text">2.1.1 LU分解</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Gauss%E6%B6%88%E5%85%83%E6%B3%95%E8%A7%A3%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%BB%84"><span class="nav-number">2.1.1.</span> <span class="nav-text">Gauss消元法解线性方程组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#LU%E5%88%86%E8%A7%A3%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-number">2.1.2.</span> <span class="nav-text">LU分解的定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Doolittle%E6%96%B9%E6%B3%95%E8%A7%A3%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%BB%84"><span class="nav-number">2.1.3.</span> <span class="nav-text">Doolittle方法解线性方程组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%B4%A7%E5%87%91%E7%9A%84LU%E5%88%86%E8%A7%A3%E5%85%AC%E5%BC%8F"><span class="nav-number">2.1.4.</span> <span class="nav-text">紧凑的LU分解公式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#LU%E5%88%86%E8%A7%A3%E7%9A%84%E5%AD%98%E5%9C%A8%E6%80%A7%E5%92%8C%E5%94%AF%E4%B8%80%E6%80%A7"><span class="nav-number">2.1.5.</span> <span class="nav-text">LU分解的存在性和唯一性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%A9%E7%94%A8LU%E5%88%86%E8%A7%A3%E6%B1%82-A-1"><span class="nav-number">2.1.6.</span> <span class="nav-text">利用LU分解求$A^{-1}$</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%A6%E5%88%97%E4%B8%BB%E5%85%83%E7%9A%84LU%E5%88%86%E8%A7%A3"><span class="nav-number">2.1.7.</span> <span class="nav-text">带列主元的LU分解</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Cholesky%E5%88%86%E8%A7%A3%E5%AE%9A%E7%90%86"><span class="nav-number">2.1.8.</span> <span class="nav-text">Cholesky分解定理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%89%E5%AF%B9%E8%A7%92%E7%9F%A9%E9%98%B5%E7%9A%84%E4%B8%89%E8%A7%92%E5%88%86%E8%A7%A3"><span class="nav-number">2.1.9.</span> <span class="nav-text">三对角矩阵的三角分解</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-2-QR%E5%88%86%E8%A7%A3"><span class="nav-number">2.2.</span> <span class="nav-text">2.1.2 QR分解</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9D%A1%E4%BB%B6%E6%95%B0"><span class="nav-number">2.2.1.</span> <span class="nav-text">条件数</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89"><span class="nav-number">2.2.1.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%94%A8%E7%9A%84%E6%9D%A1%E4%BB%B6%E6%95%B0"><span class="nav-number">2.2.1.2.</span> <span class="nav-text">一些常用的条件数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%80%A7%E8%B4%A8"><span class="nav-number">2.2.1.3.</span> <span class="nav-text">性质</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%87%A0%E4%BD%95%E6%84%8F%E4%B9%89"><span class="nav-number">2.2.1.4.</span> <span class="nav-text">几何意义</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Household%E7%9F%A9%E9%98%B5"><span class="nav-number">2.2.2.</span> <span class="nav-text">Household矩阵</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#QR%E5%88%86%E8%A7%A3"><span class="nav-number">2.2.2.1.</span> <span class="nav-text">QR分解</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Household%E7%9F%A9%E9%98%B5-1"><span class="nav-number">2.2.2.2.</span> <span class="nav-text">Household矩阵</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B%E6%80%A7%E8%B4%A8"><span class="nav-number">2.2.2.3.</span> <span class="nav-text">一些性质</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%BA%94%E7%94%A8Household%E7%9F%A9%E9%98%B5%E4%BD%9CQR%E5%88%86%E8%A7%A3"><span class="nav-number">2.2.2.4.</span> <span class="nav-text">应用Household矩阵作QR分解</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-%E7%89%B9%E6%AE%8A%E7%9F%A9%E9%98%B5%E7%9A%84%E7%89%B9%E6%AE%8A%E7%B3%BB%E7%BB%9F"><span class="nav-number">3.</span> <span class="nav-text">2.2 特殊矩阵的特殊系统</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-1-Schur%E5%88%86%E8%A7%A3"><span class="nav-number">3.1.</span> <span class="nav-text">2.2.1 Schur分解</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89-1"><span class="nav-number">3.1.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B6%E4%BB%96"><span class="nav-number">3.1.2.</span> <span class="nav-text">其他</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-2-%E6%AD%A3%E8%A7%84%E7%9F%A9%E9%98%B5"><span class="nav-number">3.2.</span> <span class="nav-text">2.2.2 正规矩阵</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89-2"><span class="nav-number">3.2.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B%E6%AD%A3%E8%A7%84%E7%9F%A9%E9%98%B5"><span class="nav-number">3.2.2.</span> <span class="nav-text">一些正规矩阵</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AD%A3%E8%A7%84%E7%9F%A9%E9%98%B5%E7%9A%84Schur%E5%88%86%E8%A7%A3"><span class="nav-number">3.2.3.</span> <span class="nav-text">正规矩阵的Schur分解</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-3-%E5%88%A9%E7%94%A8Schur%E5%AE%9A%E7%90%86%E6%9D%A5%E8%AF%81%E6%98%8E%E4%B8%80%E4%BA%9B%E8%B0%B1%E5%8D%8A%E5%BE%84%E5%92%8C%E7%9F%A9%E9%98%B5%E8%8C%83%E6%95%B0%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-number">3.3.</span> <span class="nav-text">2.2.3 利用Schur定理来证明一些谱半径和矩阵范数的关系</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-Jordan%E5%88%86%E8%A7%A3"><span class="nav-number">4.</span> <span class="nav-text">2.3 Jordan分解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-1-%E4%BB%A3%E6%95%B0%E9%87%8D%E6%95%B0%E5%92%8C%E5%87%A0%E4%BD%95%E9%87%8D%E6%95%B0"><span class="nav-number">4.1.</span> <span class="nav-text">2.3.1 代数重数和几何重数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89-3"><span class="nav-number">4.1.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E8%AE%A1%E7%AE%97"><span class="nav-number">4.1.2.</span> <span class="nav-text">如何计算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B6%E4%BB%96-1"><span class="nav-number">4.1.3.</span> <span class="nav-text">其他</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-2-Jordan%E5%88%86%E8%A7%A3"><span class="nav-number">4.2.</span> <span class="nav-text">2.3.2 Jordan分解</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89-4"><span class="nav-number">4.2.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%98%E6%8D%A2%E7%9F%A9%E9%98%B5T%E7%9A%84%E6%B1%82%E8%A7%A3"><span class="nav-number">4.2.2.</span> <span class="nav-text">变换矩阵T的求解</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-3-Hamildon-Caylay%E5%AE%9A%E7%90%86"><span class="nav-number">4.3.</span> <span class="nav-text">2.3.3 Hamildon-Caylay定理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-%E5%A5%87%E5%BC%82%E5%80%BC%E5%88%86%E8%A7%A3"><span class="nav-number">5.</span> <span class="nav-text">2.4 奇异值分解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-1-%E5%A5%87%E5%BC%82%E5%80%BC"><span class="nav-number">5.1.</span> <span class="nav-text">2.4.1 奇异值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-2-%E5%A5%87%E5%BC%82%E5%80%BC%E5%88%86%E8%A7%A3"><span class="nav-number">5.2.</span> <span class="nav-text">2.4.2 奇异值分解</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89-5"><span class="nav-number">5.2.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97"><span class="nav-number">5.2.2.</span> <span class="nav-text">计算</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-3-%E7%94%A8%E5%A5%87%E5%BC%82%E5%80%BC%E8%AE%A8%E8%AE%BA%E7%9F%A9%E9%98%B5%E6%80%A7%E8%B4%A8"><span class="nav-number">5.3.</span> <span class="nav-text">2.4.3 用奇异值讨论矩阵性质</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Ling</p>
+  <div class="site-description" itemprop="description">Blog of Ning</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://liu55x.github.io/2021/12/09/calculate-math-02/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ling">
+      <meta itemprop="description" content="Blog of Ning">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ling's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          矩阵与数值分析笔记 Part02
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2021-12-09 18:33:07 / Modified: 21:24:48" itemprop="dateCreated datePublished" datetime="2021-12-09T18:33:07+08:00">2021-12-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Note/" itemprop="url" rel="index"><span itemprop="name">Note</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>矩阵与数值分析第二章的笔记</p>
+<span id="more"></span>
+
+<h2 id="2-1-矩阵的三角分解"><a href="#2-1-矩阵的三角分解" class="headerlink" title="2.1 矩阵的三角分解"></a>2.1 矩阵的三角分解</h2><h3 id="2-1-1-LU分解"><a href="#2-1-1-LU分解" class="headerlink" title="2.1.1 LU分解"></a>2.1.1 LU分解</h3><h4 id="Gauss消元法解线性方程组"><a href="#Gauss消元法解线性方程组" class="headerlink" title="Gauss消元法解线性方程组"></a>Gauss消元法解线性方程组</h4><ul>
+<li>对n阶线性方程$Ax=b$，逐次消元将$(A|b)$上三角化，再回代从而解出x</li>
+<li>需要进行的乘法运算大约为$\frac{1}{3}n^3$</li>
+</ul>
+<h4 id="LU分解的定义"><a href="#LU分解的定义" class="headerlink" title="LU分解的定义"></a>LU分解的定义</h4><blockquote>
+<p>对于n阶方阵$A$，存在n阶单位下三角矩阵$L$和n阶上三角矩阵$U$，使得$A=LU$，称之为LU分解，也称为Doolittle分解</p>
+</blockquote>
+<ul>
+<li>从Gauss消元法的角度来考虑LU分解，其中U为消元之后所得到的上三角矩阵，L的形式为单位阵下方填上每次消元第一行所要乘上的系数（的负数）</li>
+</ul>
+<h4 id="Doolittle方法解线性方程组"><a href="#Doolittle方法解线性方程组" class="headerlink" title="Doolittle方法解线性方程组"></a>Doolittle方法解线性方程组</h4><ul>
+<li><strong>对$Ax=b$，将$A$分解为$A=LU$，令$Ux=y$，先求解$Ly=b$，再求解$Ux=y$</strong></li>
+<li>由于$L$和$U$是三角阵，方程组求解会简单许多</li>
+<li>对于1个矩阵$A$，Guass消元法和Doolittle方法的运算量相同，但对于某些工程上的运算（如A是几个矩阵相乘，b有几组取值），能大大减少运算量</li>
+</ul>
+<h4 id="紧凑的LU分解公式"><a href="#紧凑的LU分解公式" class="headerlink" title="紧凑的LU分解公式"></a>紧凑的LU分解公式</h4><p>$$<br>\begin{bmatrix}<br>   a_{11} &amp; a_{12} &amp; \cdots &amp; a_{1n}\<br>   a_{21} &amp; a_{22} &amp; \cdots &amp; a_{2n}\<br>   \vdots &amp; \vdots &amp; \ddots &amp; \vdots\<br>   a_{n1} &amp; a_{n2} &amp; \cdots &amp; a_{nn}<br>\end{bmatrix}=<br>\begin{bmatrix}<br>   1\<br>   l_{21} &amp; 1\<br>   \vdots &amp; \vdots &amp; \ddots\<br>   l_{n1} &amp; l_{n2} &amp; \cdots &amp; 1<br>\end{bmatrix}<br>\begin{bmatrix}<br>   u_{11} &amp; u_{12} &amp; \cdots &amp; u_{1n}\<br>          &amp; u_{22} &amp; \cdots &amp; u_{2n}\<br>          &amp;        &amp; \ddots &amp; \vdots\<br>          &amp;        &amp;        &amp; u_{nn}<br>\end{bmatrix}<br>$$</p>
+<p>$$<br>\begin{cases}<br>   u_{1j} = a_{1j}, j=1,2,\cdots,n \<br>   l_{j1} = \dfrac{a_{j1}}{u_{11}}, j=2,\cdots,n<br>\end{cases}\<br>\begin{cases}<br>   u_{ij} = a_{ij} - \sum_{k=1}^{i-1}l_{ik}u_{kj}, j=i,i+1,\cdots,n \<br>   l_{ji} = \dfrac{a_{ji} - \sum_{k=1}^{i-1}l_{jk}u_{ki}}{u_{ii}}, j=2,\cdots,n<br>\end{cases}<br>$$</p>
+<ul>
+<li>分别固定行和列进行计算</li>
+</ul>
+<h4 id="LU分解的存在性和唯一性"><a href="#LU分解的存在性和唯一性" class="headerlink" title="LU分解的存在性和唯一性"></a>LU分解的存在性和唯一性</h4><blockquote>
+<p>n阶矩阵A的各阶顺序主子式（1~n-1）不为0，A存在唯一的LU分解，L为单位下三角矩阵，U为上三角矩阵</p>
+</blockquote>
+<p>这与Guass分解中每次分解作为基底的行的第一项不为0是等价的。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">其他：</span><br><span class="line">- Doolittle分解</span><br><span class="line">- Crout分解</span><br><span class="line">  - 和Doolittle分解类似，但L是下三角，U是单位上三角</span><br><span class="line">  - 可以用类似于Guass分解的方法来计算L和U，不过实际处理时是对A进行列变换</span><br><span class="line">  - L的对角元和Doolittle分解中U的对角元一样</span><br><span class="line">- LDU分解</span><br><span class="line">  - 和Crout和Doolittle分解一样，有着类似的存在和唯一性定理</span><br><span class="line">  - D作为对角矩阵，对角元和前面两种分解的对角元一样</span><br><span class="line">  - L和U与Doolittle和Crout分解中的单位三角矩阵相同</span><br></pre></td></tr></table></figure>
+
+<h4 id="利用LU分解求-A-1"><a href="#利用LU分解求-A-1" class="headerlink" title="利用LU分解求$A^{-1}$"></a>利用LU分解求$A^{-1}$</h4><p>基本思路是利用$AX=I$，X为A的逆，将A和X逐列分块构成n个线性方程组，解出相应的解（$x_i$），合在一起得到X。</p>
+<h4 id="带列主元的LU分解"><a href="#带列主元的LU分解" class="headerlink" title="带列主元的LU分解"></a>带列主元的LU分解</h4><p>考虑到利用Gauss分解的过程中，各次分解作为基底的首元素可能为0的情况，因此实际消元时还需要调整各行的次序保证首元素不为0，因而有了$PA=LU分解$。</p>
+<p>For example，对A的分解过程中有（P是行变换）：<br>$$L_3 P_3 L_2 P_2 L_1 P_1 A = LU$$</p>
+<p>即<br>$$L_3 (P_3 L_2 P_3^{-1}) (P_3 P_2 L_1 P_2^{-1} P_3^{-1}) (P_3 P_2 P_1) A = LU$$</p>
+<p>从而<br>$$<br>PA = LU<br>$$</p>
+<p>其中<br>$$<br>P=P_3 P_2 P_1\<br>L=\tilde{L}_1^{-1} \tilde{L}_2^{-1} \tilde{L}_3^{-1}\<br>\tilde{L}_3 = L_3\<br>\tilde{L}_2 = P_3 L_2 P_3^{-1}\<br>\tilde{L}_1 = P_3 P_2 L_1 P_2^{-1} P_3^{-1}<br>$$</p>
+<h4 id="Cholesky分解定理"><a href="#Cholesky分解定理" class="headerlink" title="Cholesky分解定理"></a>Cholesky分解定理</h4><p>对于正定（半正定）对称矩阵矩阵A $\iff$ A各阶顺序主子式为正（非负） $\iff$ A的特征值为正（非负），有一种特殊的的LU分解，称之为Cholesky分解。</p>
+<blockquote>
+<p>对于任意n阶正定对称矩阵A，存在下三角矩阵L，使得$A=LL^T$，称之为Cholesky分解。如果L的对角元为正，该分解唯一。</p>
+</blockquote>
+<p>计算公式：<br>$$<br>\begin{bmatrix}<br>   a_{11} &amp; \cdots &amp; a_{1j} &amp; \cdots &amp; a_{1n}\<br>   \vdots &amp; \ddots &amp; \vdots &amp; \ddots &amp; \vdots\<br>   a_{i1} &amp; \cdots &amp; a_{ij} &amp; \cdots &amp; a_{in}\<br>   \vdots &amp; \ddots &amp; \vdots &amp; \ddots &amp; \vdots\<br>   a_{n1} &amp; \cdots &amp; a_{nj} &amp; \cdots &amp; a_{nn}<br>\end{bmatrix}=<br>\begin{bmatrix}<br>   l_{11} &amp; \cdots &amp; 0      &amp; \cdots &amp; 0\<br>   \vdots &amp; \ddots &amp; \vdots &amp; \ddots &amp; \vdots\<br>   l_{i1} &amp; \cdots &amp; l_{ij} &amp; \cdots &amp; 0\<br>   \vdots &amp; \ddots &amp; \vdots &amp; \ddots &amp; \vdots\<br>   l_{n1} &amp; \cdots &amp; l_{nj} &amp; \cdots &amp; l_{nn}<br>\end{bmatrix}<br>\begin{bmatrix}<br>   l_{11} &amp; \cdots &amp; l_{1j} &amp; \cdots &amp; l_{1n}\<br>   \vdots &amp; \ddots &amp; \vdots &amp; \ddots &amp; \vdots\<br>   0      &amp; \cdots &amp; l_{jj} &amp; \cdots &amp; l_{in}\<br>   \vdots &amp; \ddots &amp; \vdots &amp; \ddots &amp; \vdots\<br>   0      &amp; \cdots &amp; 0      &amp; \cdots &amp; l_{nn}<br>\end{bmatrix}<br>$$</p>
+<p>$$<br>a_{ij} = \sum_{k=1}^{j-1}l_{ik}l_{kj} + l_{ij}l_{jj}<br>$$</p>
+<p>计算步骤：<br>实际计算时，先计算出L的对角元:<br>$$<br>l_{jj}=(a_{jj} - \sum_{k=1}^{j-1}l_{jk}^2)^{1/2}<br>$$</p>
+<p>再计算出对角元所在列的其他元素<br>$$<br>l_{ij}=(a_{ij} - \sum_{k=1}^{j-1}l_{ik}l_{jk})/l_{jj}, i \gt j<br>$$</p>
+<h4 id="三对角矩阵的三角分解"><a href="#三对角矩阵的三角分解" class="headerlink" title="三对角矩阵的三角分解"></a>三对角矩阵的三角分解</h4><p>$$<br>\begin{bmatrix}<br>   b_{1} &amp; c_{1}\<br>   a_{2} &amp; b_{2} &amp; c_{2}\<br>         &amp;\ddots &amp; \ddots &amp; \ddots\<br>         &amp;       &amp; a_{n-1} &amp; b_{n-1} &amp; c_{n-1}\<br>         &amp;       &amp;         &amp; b_{n}   &amp; c_{n}<br>\end{bmatrix}=<br>\begin{bmatrix}<br>   1\<br>   l_{2} &amp; 1\<br>         &amp;\ddots &amp; \ddots\<br>         &amp;       &amp; l_{n-1} &amp; 1\<br>         &amp;       &amp;         &amp; l_{n}   &amp; 1<br>\end{bmatrix}<br>\begin{bmatrix}<br>   u_{1} &amp; d_{1}\<br>         &amp; u_{2}  &amp; d_{2}\<br>         &amp;        &amp; \ddots &amp; \ddots\<br>         &amp;        &amp;        &amp; u_{n-1} &amp; d_{n-1}\<br>         &amp;        &amp;        &amp;         &amp; u_{n}<br>\end{bmatrix}<br>$$</p>
+<p>$$<br>\begin{cases}<br>d_i = c_i &amp; i = 1,2,\cdots,n-1\<br>u_1 = b_1\<br>l_i = \dfrac{a_i}{u_{i-1}} &amp; i = 2,3,\cdots,n\<br>u_i = b_i - l_id_{i-1} &amp; i = 2,3,\cdots,n<br>\end{cases}<br>$$</p>
+<p>计算次序：$u_1 \to l_2 \to u_2 \to \cdots \to l_n \to u_n$</p>
+<h3 id="2-1-2-QR分解"><a href="#2-1-2-QR分解" class="headerlink" title="2.1.2 QR分解"></a>2.1.2 QR分解</h3><h4 id="条件数"><a href="#条件数" class="headerlink" title="条件数"></a>条件数</h4><h5 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h5><blockquote>
+<p>A为非奇异矩阵，$|\cdot|$为算子范数，A的条件数为$cond(A)=|A||A^{-1}|$</p>
+</blockquote>
+<p>cond(A)越大越病态</p>
+<h5 id="一些常用的条件数"><a href="#一些常用的条件数" class="headerlink" title="一些常用的条件数"></a>一些常用的条件数</h5><p>$cond_{\infty}(A)=|A|<em>{\infty}|A^{-1}|</em>{\infty}$<br>$cond_{1}(A)=|A|<em>{1}|A^{-1}|</em>{1}$<br>$cond_{2}(A)=|A|<em>{2}|A^{-1}|</em>{2}=\sqrt{\dfrac{\lambda_{max}(A^H A)}{\lambda_{min}(A^H A)}}$</p>
+<h5 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h5><p>$cond(A) \ge 1$<br>$cond(A) = cond(A^{-1})$<br>$cond({\alpha}A) = cond(A)$<br>$cond_{2}(U) = 1$<br>$cond_{2}(UA) = cond_{2}(AU) = cond_{2}(A)$<br>$cond(AB) \le cond(A)cond(B)$  </p>
+<h5 id="几何意义"><a href="#几何意义" class="headerlink" title="几何意义"></a>几何意义</h5><p>条件数的倒数等于该矩阵与奇异矩阵之间的距离。条件数越大，矩阵越接近奇异矩阵。</p>
+<h4 id="Household矩阵"><a href="#Household矩阵" class="headerlink" title="Household矩阵"></a>Household矩阵</h4><h5 id="QR分解"><a href="#QR分解" class="headerlink" title="QR分解"></a>QR分解</h5><p>经过LU分解后可能会使得条件数增大，而如果分解成正交矩阵Q和一个矩阵R相乘，则不会改变其条件数，可以来解一些病态方程，这也就是QR分解。</p>
+<h5 id="Household矩阵-1"><a href="#Household矩阵-1" class="headerlink" title="Household矩阵"></a>Household矩阵</h5><blockquote>
+<p>$$<br>H(\omega)=I-\frac{2}{\omega^T\omega}\omega\omega^T<br>$$</p>
+</blockquote>
+<h5 id="一些性质"><a href="#一些性质" class="headerlink" title="一些性质"></a>一些性质</h5><ul>
+<li>对称，$H(\omega)^T = H(\omega)$  </li>
+<li>正交，$H(\omega)^T H(\omega)=I$  </li>
+<li>镜像变换，$H(\omega)x = y \to |y|_2 = |x|_2$  </li>
+</ul>
+<h5 id="应用Household矩阵作QR分解"><a href="#应用Household矩阵作QR分解" class="headerlink" title="应用Household矩阵作QR分解"></a>应用Household矩阵作QR分解</h5><ul>
+<li><p>对于ω的选取，由于H(ω)是作镜像变换（x为原向量，y为变换后的向量），那么$\omega = x - y$。一般来说会将x变换到坐标轴上，y可以选择为e<del>1</del>，要注意y的模长保持和x一致。  </p>
+</li>
+<li><p>分解过程是通过不断的利用household矩阵已将原矩阵A的第一列变换为$\alpha e_1$来进行的，但要注意除了第一次变换$Q_1$，其他的要将household矩阵对角填上1补完整。</p>
+</li>
+</ul>
+<h2 id="2-2-特殊矩阵的特殊系统"><a href="#2-2-特殊矩阵的特殊系统" class="headerlink" title="2.2 特殊矩阵的特殊系统"></a>2.2 特殊矩阵的特殊系统</h2><h3 id="2-2-1-Schur分解"><a href="#2-2-1-Schur分解" class="headerlink" title="2.2.1 Schur分解"></a>2.2.1 Schur分解</h3><h4 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h4><blockquote>
+<p>对任意方阵A，均存在酉阵U使得$A=URU^H$成立，R为上三角矩阵</p>
+</blockquote>
+<h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><ul>
+<li>Schur分解中，A和R酉相似，特征值相同，而R为上三角矩阵，对角元为特征值，也即A酉相似于一个对角元为特征值的上三角矩阵R</li>
+<li>Schur分解只能理论上得到A的特征值，一般计算还是使用迭代法</li>
+<li>Schur仅在复空间中成立</li>
+<li>U的列向量不一定是A的特征向量，除了第一列</li>
+</ul>
+<h3 id="2-2-2-正规矩阵"><a href="#2-2-2-正规矩阵" class="headerlink" title="2.2.2 正规矩阵"></a>2.2.2 正规矩阵</h3><h4 id="定义-2"><a href="#定义-2" class="headerlink" title="定义"></a>定义</h4><blockquote>
+<p>满足$A^H A = A A^H$的方阵称之为正规矩阵</p>
+</blockquote>
+<h4 id="一些正规矩阵"><a href="#一些正规矩阵" class="headerlink" title="一些正规矩阵"></a>一些正规矩阵</h4><ul>
+<li>Hermite矩阵：$A^H=A$<ul>
+<li>实对称矩阵：$A^T=A$</li>
+</ul>
+</li>
+<li>斜Hermite矩阵：$A^H=-A$<ul>
+<li>实反对称矩阵：$A^T=-A$</li>
+</ul>
+</li>
+<li>酉阵：$A^H A = A A^H = I$<ul>
+<li>正交矩阵：$A^T A = A A^T = I$</li>
+</ul>
+</li>
+</ul>
+<h4 id="正规矩阵的Schur分解"><a href="#正规矩阵的Schur分解" class="headerlink" title="正规矩阵的Schur分解"></a>正规矩阵的Schur分解</h4><blockquote>
+<p>方阵A为正规矩阵的充要条件是存在酉阵U，使得$A=UDU^H$，D为对角矩阵</p>
+</blockquote>
+<ul>
+<li>D的对角元是A的特征值，U的列是相对应的特征向量</li>
+<li>A为Hermite矩阵，D为对角矩阵；A为斜Hermite矩阵，D为对角为纯虚数的对角矩阵</li>
+</ul>
+<h3 id="2-2-3-利用Schur定理来证明一些谱半径和矩阵范数的关系"><a href="#2-2-3-利用Schur定理来证明一些谱半径和矩阵范数的关系" class="headerlink" title="2.2.3 利用Schur定理来证明一些谱半径和矩阵范数的关系"></a>2.2.3 利用Schur定理来证明一些谱半径和矩阵范数的关系</h3><blockquote>
+<p>对于n阶方阵，$\varepsilon&gt;0$，存在矩阵范数$|\cdot|_M$，使得$|I|_M=1$，并且$|A|_M \le \rho(A) + \varepsilon$</p>
+</blockquote>
+<blockquote>
+<p>F范数的U不变性：A为n阶方阵，存在酉阵U和V，使得$|UA|_F = |AV|_F = |UAV|_F = |A|_F$</p>
+</blockquote>
+<h2 id="2-3-Jordan分解"><a href="#2-3-Jordan分解" class="headerlink" title="2.3 Jordan分解"></a>2.3 Jordan分解</h2><h3 id="2-3-1-代数重数和几何重数"><a href="#2-3-1-代数重数和几何重数" class="headerlink" title="2.3.1 代数重数和几何重数"></a>2.3.1 代数重数和几何重数</h3><h4 id="定义-3"><a href="#定义-3" class="headerlink" title="定义"></a>定义</h4><ul>
+<li>代数重数$m_i$是<strong>特征值的重数</strong>，几何重数$\alpha_i$是<strong>特征值所对应的特征向量的个数</strong></li>
+<li>$m_i \ge \alpha_i$</li>
+</ul>
+<h4 id="如何计算"><a href="#如何计算" class="headerlink" title="如何计算"></a>如何计算</h4><ul>
+<li>$\alpha_i = n - rank(\lambda_i I - A)$</li>
+<li>计算$rank(\lambda_i I - A)$时，考虑其行列式的值，并计算相应子式的行列式的值，直到子式行列式不为0，说明其非奇异，秩为最高非奇异子式的阶数</li>
+</ul>
+<h4 id="其他-1"><a href="#其他-1" class="headerlink" title="其他"></a>其他</h4><blockquote>
+<p>$m_i = \alpha_i$，称$\lambda_i$半单；$m_i \gt \alpha_i$，称$\lambda_i$亏损</p>
+</blockquote>
+<ul>
+<li>若A的特征值的代数重数均为1，则其必定半单</li>
+<li>A为不可对角化矩阵 $\iff$ 存在亏损的特征值</li>
+</ul>
+<h3 id="2-3-2-Jordan分解"><a href="#2-3-2-Jordan分解" class="headerlink" title="2.3.2 Jordan分解"></a>2.3.2 Jordan分解</h3><h4 id="定义-4"><a href="#定义-4" class="headerlink" title="定义"></a>定义</h4><blockquote>
+<p>对n阶方阵A，存在n阶可逆矩阵，使得$A = TJT^{-1}$，其中，$J = diag(J_{n_1}(\lambda_1),J_{n_2}(\lambda_2),\cdots,J_{n_k}(\lambda_k)),n_1+n_2+\cdots+n_k=n$，称之为Jordan分解，J为Jordan标准型，T为变换矩阵</p>
+</blockquote>
+<ul>
+<li>不考虑Jordan块的次序，则J唯一</li>
+<li>Jordan块主对角线为特征值，上方的次对角线为1，其他为0</li>
+<li>对于某一特征值，其Jordan块的个数等于其几何重数，Jordan块的总阶数等于其代数重数</li>
+<li>阶数为l的Jordan块的个数为$r_{l+1}+r_{l-1}-2r_{l}$，其中$r_l=rank(\lambda_iI-A)^l，r_0=n$</li>
+</ul>
+<h4 id="变换矩阵T的求解"><a href="#变换矩阵T的求解" class="headerlink" title="变换矩阵T的求解"></a>变换矩阵T的求解</h4><ol>
+<li><p>按照Jordan块的阶数对T进行划分，即<br>$$<br>A(T_1,T_2,\cdots,T_k)=(T_1,T_2,\cdots,T_k)<br>\begin{bmatrix}<br>J_{n_1}(\lambda_1)\</p>
+<pre><code>           &amp; J_&#123;n_2&#125;(\lambda_2)\\
+           &amp;                   &amp; \ddots\\
+           &amp;                   &amp;       &amp;J_&#123;n_k&#125;(\lambda_k)
+</code></pre>
+<p>\end{bmatrix}<br>$$</p>
+</li>
+<li><p>进一步将$T_k$划分为列，即$T_i=(t_1^i,t_2^i,\cdots,t_{n_k}^i)$，解方程组$A T_k=T_k J_{n_k}(\lambda_k)$</p>
+</li>
+<li><p>对于特征值所对应的线性无关特征向量的个数大于等于2时，考虑到任一特征向量都可能无法作为链首，用这些向量再构造出一个向量作为链首，求解并解出其他列</p>
+</li>
+</ol>
+<h3 id="2-3-3-Hamildon-Caylay定理"><a href="#2-3-3-Hamildon-Caylay定理" class="headerlink" title="2.3.3 Hamildon-Caylay定理"></a>2.3.3 Hamildon-Caylay定理</h3><blockquote>
+<p>取$\varphi(\lambda)=det(\lambda I-A)$，则$\varphi(A)=0$</p>
+</blockquote>
+<h2 id="2-4-奇异值分解"><a href="#2-4-奇异值分解" class="headerlink" title="2.4 奇异值分解"></a>2.4 奇异值分解</h2><h3 id="2-4-1-奇异值"><a href="#2-4-1-奇异值" class="headerlink" title="2.4.1 奇异值"></a>2.4.1 奇异值</h3><blockquote>
+<p>$A\in C^{m \times n}$，半正定Hermite矩阵$A^HA$的特征值为$\lambda_1 \ge \lambda_2 \ge \dots \ge \lambda_n \ge 0$，称非负实数$\sigma_i(A)=\sqrt{\lambda_i}$为A的奇异值</p>
+</blockquote>
+<ul>
+<li>相似矩阵($A = UBV^H$)的奇异值相同</li>
+</ul>
+<h3 id="2-4-2-奇异值分解"><a href="#2-4-2-奇异值分解" class="headerlink" title="2.4.2 奇异值分解"></a>2.4.2 奇异值分解</h3><h4 id="定义-5"><a href="#定义-5" class="headerlink" title="定义"></a>定义</h4><blockquote>
+<p>对$m \times n$阶矩阵A，存在m阶酉阵U和n阶酉阵V，使得$A = U \begin{bmatrix}\Sigma &amp; 0\0 &amp; 0\end{bmatrix} V^H$，$\Sigma$为A的非0奇异值按照次序构成的对角矩阵。</p>
+</blockquote>
+<h4 id="计算"><a href="#计算" class="headerlink" title="计算"></a>计算</h4><ul>
+<li>计算$A^HA$的特征值，求出奇异值</li>
+</ul>
+<h3 id="2-4-3-用奇异值讨论矩阵性质"><a href="#2-4-3-用奇异值讨论矩阵性质" class="headerlink" title="2.4.3 用奇异值讨论矩阵性质"></a>2.4.3 用奇异值讨论矩阵性质</h3>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/math/" rel="tag"># math</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/12/10/hello-world/" rel="next" title="Hello World">
+                  Hello World <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ling</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
